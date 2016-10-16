@@ -1,3 +1,37 @@
-<h1>
-  {{title}}
-</h1>
+<div class="ui fixed inverted menu">
+	<div class="ui container">
+		<a href="#" class="header item">
+			<img class="logo" src="assets/images/logo.png"> Trading Hours
+		</a>
+		<a href="#" class="item" routerLink="/list" routerLinkActive="active">List</a>
+		<a href="#" class="item" routerLink="/add" routerLinkActive="active">Add</a>
+		<a href="#" class="item" *ngIf="!auth.authenticated" routerLink="/login">Login</a>
+		<div class="right menu" *ngIf="auth.authenticated">
+			<a class="item">
+				<div class="ui icon input">
+					<i class="search icon"></i>
+					<input #searchBox id="search-box" (keyup)="search(searchBox.value)" placeholder="Search">
+				</div>
+			</a>
+			<a class="item">{{auth.user}} </a>
+			<a href="#" class="item pink ui button" *ngIf="auth.authenticated" (click)="auth.logout()">Logout</a>
+		</div>
+	</div>
+</div>
+
+<div class="ui main text container">
+	<router-outlet></router-outlet>
+</div>
+
+<div class="ui inverted vertical footer segment">
+	<div class="ui center aligned container">
+		<div class="ui inverted section divider"></div>
+		<img src="assets/images/logo.png" class="ui centered mini image">
+		<div class="ui horizontal inverted small divided link list">
+			<a class="item" href="#">Site Map</a>
+			<a class="item" href="#">Contact Us</a>
+			<a class="item" href="#">Terms and Conditions</a>
+			<a class="item" href="#">Privacy Policy</a>
+		</div>
+	</div>
+</div>

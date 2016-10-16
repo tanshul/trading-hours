@@ -1,0 +1,25 @@
+<h2>Listing</h2>
+<div class="ui container">
+	<table class="ui celled table">
+		<thead>
+			<tr>
+				<th>Name</th>
+				<th>Category</th>
+				<th>City</th>
+				<th>Date Added</th>
+				<th>&nbsp;</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr *ngFor="let company of companies | async">
+				<td>{{company.name}}</td>
+				<td>{{company.category}}</td>
+				<td>{{company.city}}</td>
+				<td>{{company.dateadded | date:'MM/dd/yyyy @ h:mma'}}</td>
+				<td>
+					<button routerLink="/edit/{{company.$key}}">update</button>
+					<button (click)="delete(company.$key)">delete</button></td>
+			</tr>
+		</tbody>
+	</table>
+</div>

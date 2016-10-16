@@ -1,0 +1,268 @@
+<form class="ui form" #formRef="ngForm" (ngSubmit)="update(formRef.value)">
+	<h1 class="ui dividing header">Update {{(details| async)?.name}}</h1>
+	<div class="two fields">
+		<div class="field">
+			<label>Name</label>
+			<div class="ui corner labeled input">
+				<input type="text" name="name" placeholder="Name" [value]="(details| async)?.name" required [(ngModel)]="model" (ngModelChange)="updateField($event,'name','companies')">
+				<div class="ui corner label">
+					<i class="asterisk icon"></i>
+				</div>
+			</div>
+		</div>
+
+		<div class="field">
+			<label>Address</label>
+			<input type="text" name="address" placeholder="Address" [(ngModel)]="address" required value="{{(details| async)?.address}}"
+				(ngModelChange)="updateField($event,'address','details')">
+		</div>
+	</div>
+
+	<div class="two fields">
+		<div class="field">
+			<label>City</label>
+			<select [(ngModel)]="city" name="city" class="ui fluid search dropdown" required (ngModelChange)="updateField($event,'city','companies')">        
+				<option *ngFor="let city of cities" value="{{city}}" [selected]= "(details| async)?.city === city" >{{city}}</option>
+			</select>
+		</div>
+
+		<div class="field">
+			<label>Category</label>
+			<select [(ngModel)]="category" name="category" class="ui fluid search dropdown" required (ngModelChange)="updateField($event,'category','companies')">
+				<option *ngFor="let cat of categories" value="{{cat}}" [selected]= "(details| async)?.category === cat">{{cat}}</option>
+			</select>
+		</div>
+	</div>
+
+	<h3 class="ui dividing header">Contact Details</h3>
+	<div class="field">
+		<label>Phone</label>
+		<div class="two fields">
+			<div class="field">
+				<input type="text" name="phone" placeholder="Phone" required [(ngModel)]="phone" value="{{(details| async)?.phone}}" (ngModelChange)="updateField($event,'phone','details')">
+			</div>
+			<div class="field">
+				<input type="text" name="altphone" placeholder="Alt Phone" [(ngModel)]="altphone" value="{{(details| async)?.altphone}}"
+					(ngModelChange)="updateField($event,'altphone','details')">
+			</div>
+		</div>
+	</div>
+	<div class="field">
+		<label>Email</label>
+		<div class="two fields">
+			<div class="field">
+				<input type="text" name="email" placeholder="Email" required [(ngModel)]="email" value="{{(details| async)?.email}}" (ngModelChange)="updateField($event,'email','details')">
+			</div>
+			<div class="field">
+				<div class="ui labeled input">
+					<div class="ui label">
+						http://
+					</div>
+					<input type="text" name="website" placeholder="Website" [(ngModel)]="website" value="{{(details| async)?.website}}" (ngModelChange)="updateField($event,'website','details')">
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<h3 class="ui dividing header">Trading Hours</h3>
+	<!-- Monday -->
+	<div class="field">
+		<label>Monday</label>
+
+		<div class="two fields">
+			<div class="field">
+				<label>Open</label>
+				<select [(ngModel)]="mondayopen" name="mondayopen" class="ui fluid search dropdown" required (ngModelChange)="updateField($event,'mondayopen','hours')">
+				  <option *ngFor="let hour of openhours" value="{{hour}}" [selected]= "(hours| async)?.mondayopen === hour">{{hour}}</option>				     
+			 </select>
+			</div>
+
+			<div class="field">
+				<label>Close</label>
+				<select [(ngModel)]="mondayclose" name="mondayclose" class="ui fluid search dropdown" required (ngModelChange)="updateField($event,'mondayclose','hours')">
+				  <option *ngFor="let hour of closehours" value="{{hour}}" [selected]= "(hours| async)?.mondayclose === hour">{{hour}}</option>				         
+			 </select>
+			</div>
+		</div>
+
+	</div>
+	<!-- Tuesday -->
+	<div class="field">
+		<label>Tuesday</label>
+
+		<div class="two fields">
+			<div class="field">
+				<label>Open</label>
+				<select [(ngModel)]="tuesday0pen" name="tuesdayopen" class="ui fluid search dropdown" required (ngModelChange)="updateField($event,'tuesdayopen','hours')">
+				  <option *ngFor="let hour of openhours" value="{{hour}}" [selected]= "(hours| async)?.tuesdayopen === hour">{{hour}}</option>     
+			  </select>
+			</div>
+
+			<div class="field">
+				<label>Close</label>
+				<select [(ngModel)]="tuesdayclose" name="tuesdayclose" class="ui fluid search dropdown" required (ngModelChange)="updateField($event,'tuesdayclose','hours')">
+				  <option *ngFor="let hour of openhours" value="{{hour}}" [selected]= "(hours| async)?.tuesdayclose === hour">{{hour}}</option>     
+        </select>
+			</div>
+		</div>
+
+	</div>
+	<!-- Wednesday -->
+	<div class="field">
+		<label>Wednesday</label>
+
+		<div class="two fields">
+			<div class="field">
+				<label>Open</label>
+				<select [(ngModel)]="wednesdayopen" name="wednesdayopen" class="ui fluid search dropdown" required (ngModelChange)="updateField($event,'wednesdayopen','hours')">
+				  <option *ngFor="let hour of openhours" value="{{hour}}" [selected]= "(hours| async)?.wednesdayopen === hour">{{hour}}</option>          
+			 </select>
+			</div>
+
+			<div class="field">
+				<label>Close</label>
+				<select [(ngModel)]="wednesdayclose" name="wednesdayclose" class="ui fluid search dropdown" required (ngModelChange)="updateField($event,'wednesdayclose','hours')">
+				  <option *ngFor="let hour of openhours" value="{{hour}}" [selected]= "(hours| async)?.wednesdayclose === hour">{{hour}}</option>     					    
+			 </select>
+			</div>
+		</div>
+
+	</div>
+	<!-- Thursday -->
+	<div class="field">
+		<label>Thursday</label>
+
+		<div class="two fields">
+			<div class="field">
+				<label>Open</label>
+				<select [(ngModel)]="thursdayopen" name="thursdayopen" class="ui fluid search dropdown" required (ngModelChange)="updateField($event,'thursdayopen','hours')">
+				  <option *ngFor="let hour of openhours" value="{{hour}}" [selected]= "(hours| async)?.thursdayopen === hour">{{hour}}</option>				 
+			 </select>
+			</div>
+
+			<div class="field">
+				<label>Close</label>
+				<select [(ngModel)]="thursdayclose" name="thursdayclose" class="ui fluid search dropdown" required (ngModelChange)="updateField($event,'thursdayclose','hours')">
+				  <option *ngFor="let hour of openhours" value="{{hour}}" [selected]= "(hours| async)?.thursdayclose === hour">{{hour}}</option>				 					    
+			 </select>
+			</div>
+		</div>
+
+	</div>
+	<!-- Friday -->
+	<div class="field">
+		<label>Friday</label>
+
+		<div class="two fields">
+			<div class="field">
+				<label>Open</label>
+				<select [(ngModel)]="fridayopen" name="fridayopen" class="ui fluid search dropdown" required (ngModelChange)="updateField($event,'fridayopen','hours')">
+				  <option *ngFor="let hour of openhours" value="{{hour}}" [selected]= "(hours| async)?.fridayopen === hour">{{hour}}</option>					       
+			 </select>
+			</div>
+
+			<div class="field">
+				<label>Close</label>
+				<select [(ngModel)]="fridayclose" name="fridayclose" class="ui fluid search dropdown" required (ngModelChange)="updateField($event,'fridayclose','hours')">
+				  <option *ngFor="let hour of openhours" value="{{hour}}" [selected]= "(hours| async)?.fridayclose === hour">{{hour}}</option>				   
+			 </select>
+			</div>
+		</div>
+
+	</div>
+	<!-- Saturday -->
+	<div class="field">
+		<label>Saturday</label>
+
+		<div class="two fields">
+			<div class="field">
+				<label>Open</label>
+				<select [(ngModel)]="saturdayopen" name="saturdayopen" class="ui fluid search dropdown" required (ngModelChange)="updateField($event,'saturdayopen','hours')">
+				  <option *ngFor="let hour of openhours" value="{{hour}}" [selected]= "(hours| async)?.saturdayopen === hour">{{hour}}</option>				   					     
+			 </select>
+			</div>
+
+			<div class="field">
+				<label>Close</label>
+				<select [(ngModel)]="saturdayclose" name="saturdayclose" class="ui fluid search dropdown" required (ngModelChange)="updateField($event,'saturdayclose','hours')">
+				  <option *ngFor="let hour of openhours" value="{{hour}}" [selected]= "(hours| async)?.saturdayclose === hour">{{hour}}</option>				   				
+			 </select>
+			</div>
+		</div>
+
+	</div>
+	<!-- Sunday -->
+	<div class="field">
+		<label>Sunday</label>
+
+		<div class="two fields">
+			<div class="field">
+				<label>Open</label>
+				<select [(ngModel)]="sundayopen" name="sundayopen" class="ui fluid search dropdown" required (ngModelChange)="updateField($event,'sundayopen','hours')">
+				  <option *ngFor="let hour of openhours" value="{{hour}}" [selected]= "(hours| async)?.sundayopen === hour">{{hour}}</option>				   									     
+			 </select>
+			</div>
+
+			<div class="field">
+				<label>Close</label>
+				<select [(ngModel)]="sundayclose" name="sundayclose" class="ui fluid search dropdown" required (ngModelChange)="updateField($event,'sundayclose','hours')">
+				  <option *ngFor="let hour of openhours" value="{{hour}}" [selected]= "(hours| async)?.sundayclose === hour">{{hour}}</option>					    
+			 </select>
+			</div>
+		</div>
+
+	</div>
+	<h3 class="ui dividing header">Other</h3>
+	<div class="two fields">
+		<div class="field">
+			<label>Public Holidays</label>
+			<input type="text" name="public" placeholder="Eg: Open on Fiji Day, Queens birthday." [(ngModel)]="public" value="{{(details| async)?.public}}"
+				(ngModelChange)="updateField($event,'public','details')">
+		</div>
+
+		<div class="field">
+			<label>Tags</label>
+			<input type="text" name="tags" placeholder="mhcc,coffee,food,government" [(ngModel)]="tags" value="{{(details| async)?.tags}}"
+				(ngModelChange)="updateField($event,'tags','details')">
+		</div>
+	</div>
+
+	<h3 class="ui dividing header">Optional (Map)</h3>
+	<div class="two fields">
+		<div class="field">
+			<label>Latitude</label>
+			<input type="text" name="latitude" placeholder="-18.124809" [(ngModel)]="latitude" value="{{(map| async)?.latitude}}" (ngModelChange)="updateField($event,'latitude','map')">
+		</div>
+
+		<div class="field">
+			<label>Longitude</label>
+			<input type="text" name="longitude" placeholder="178.450079" [(ngModel)]="longitude" value="{{(map| async)?.longitude}}"
+				(ngModelChange)="updateField($event,'longitude','map')">
+		</div>
+	</div>
+
+	<h3 class="ui dividing header">Social Media (Optional)</h3>
+	<div class="two fields">
+		<div class="field">
+			<label>Facebook</label>
+			<input type="text" name="facebook" [(ngModel)]="facebook" value="{{(social| async)?.facebook}}" (ngModelChange)="updateField($event,'facebook','social')">
+		</div>
+
+		<div class="field">
+			<label>Twitter</label>
+			<input type="text" name="twiiter" [(ngModel)]="twiiter" value="{{(social| async)?.twitter}}" (ngModelChange)="updateField($event,'twitter','social')">
+		</div>
+	</div>
+	<div class="two fields">
+		<div class="field">
+			<label>Instagram</label>
+			<input type="text" name="instagram" [(ngModel)]="instagram" value="{{(social| async)?.instagram}}" (ngModelChange)="updateField($event,'instagram','social')">
+		</div>
+
+		<div class="field">
+			<label>LinkedIn</label>
+			<input type="text" name="linkedin" [(ngModel)]="linkedin" value="{{(social| async)?.linkedin}}" (ngModelChange)="updateField($event,'linkedin','social')">
+		</div>
+	</div>
+
+</form>
