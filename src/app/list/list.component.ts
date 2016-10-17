@@ -16,9 +16,9 @@ export class ListComponent {
   map: FirebaseListObservable<any>;
   social: FirebaseListObservable<any>;
 
-
   constructor(public af: AngularFire) {
-    this.companies = af.database.list('/companies', { query: { orderByChild: 'dateadded', limitToLast: 10 } });
+    this.companies = af.database.list('/companies',
+      { query: { limitToLast: 10 } }).map((arr) => { return arr.reverse() }) as FirebaseListObservable<any[]>;
     this.category = af.database.list('/category');
     this.details = af.database.list('/details');
     this.hours = af.database.list('/hours');
@@ -28,22 +28,23 @@ export class ListComponent {
 
   }
 
-  update(key: string) {
-    console.log(key);
-  }
-
   delete(key: string) {
-    this.companies.remove(key);
-    this.category.remove(key);
-    this.details.remove(key);
-    this.hours.remove(key);
-    this.map.remove(key);
-    this.social.remove(key);
+    var confirm = window.confirm("Are you 100% sure you want to delete this?");
+    if (confirm === true) {
+      this.companies.remove(key);
+      this.category.remove(key);
+      this.details.remove(key);
+      this.hours.remove(key);
+      this.map.remove(key);
+      this.social.remove(key);
+    } else {
+      return false;
+    }
   }
 
   search(term) {
     if (term && term !== '') {
-      this.companies = this.af.database.list('/companies', { query: { orderByChild: 'name', equalTo: term } });
+      this.companies = this.af.database.list('/companies').map((arr) => { return arr.filter(item => item.name.toLowerCase().indexOf(term.toLowerCase()) > -1); }) as FirebaseListObservable<any[]>;
     } else {
       this.companies = this.af.database.list('/companies', { query: { orderByChild: 'dateadded', limitToLast: 10 } });
     }

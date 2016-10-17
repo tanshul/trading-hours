@@ -3,11 +3,11 @@
 		<div class="column">
 			<h2>Listing</h2>
 		</div>
-		<div class="column">
-			<div class="ui action left icon input">
+		<div class="column right">
+			<div class="ui action left icon input" style="float:right">
 				<i class="search icon"></i>
 				<input #term id="search-box" (keyup)="checksearch(term.value)" placeholder="Search">
-				<div class="ui teal button" (click)="search(term.value)">Search</div>
+				<div class="ui black button" (click)="search(term.value)">Search</div>
 			</div>
 		</div>
 	</div>
@@ -22,6 +22,7 @@
 				<th>City</th>
 				<th>Date Added</th>
 				<th>&nbsp;</th>
+				<th>&nbsp;</th>
 			</tr>
 		</thead>
 		<tbody>
@@ -31,8 +32,11 @@
 				<td>{{company.city}}</td>
 				<td>{{company.dateadded | date:'MM/dd/yyyy @ h:mma'}}</td>
 				<td>
-					<button routerLink="/edit/{{company.$key}}">update</button>
-					<button (click)="delete(company.$key)">delete</button></td>
+					<button routerLink="/edit/{{company.$key}}" class="ui teal button">update</button>
+				</td>
+				<td>
+					<button (click)="delete(company.$key)" class="ui red button">delete</button>
+				</td>
 			</tr>
 		</tbody>
 	</table>
