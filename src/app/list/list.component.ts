@@ -10,10 +10,22 @@ import { AngularFire, FirebaseListObservable, FirebaseObjectObservable } from 'a
 export class ListComponent {
 
   companies: FirebaseListObservable<any>;
+  category: FirebaseListObservable<any>;
+  details: FirebaseListObservable<any>;
+  hours: FirebaseListObservable<any>;
+  map: FirebaseListObservable<any>;
+  social: FirebaseListObservable<any>;
+
 
   constructor(public af: AngularFire) {
     this.companies = af.database.list('/companies', { query: { orderByChild: 'dateadded', limitToLast: 10 } });
+    this.category = af.database.list('/category');
+    this.details = af.database.list('/details');
+    this.hours = af.database.list('/hours');
+    this.map = af.database.list('/map');
+    this.social = af.database.list('/social');
     this.af = af;
+
   }
 
   update(key: string) {
@@ -22,6 +34,11 @@ export class ListComponent {
 
   delete(key: string) {
     this.companies.remove(key);
+    this.category.remove(key);
+    this.details.remove(key);
+    this.hours.remove(key);
+    this.map.remove(key);
+    this.social.remove(key);
   }
 
   search(term) {
