@@ -7,12 +7,6 @@
 		<a href="#" class="item" routerLink="/add" routerLinkActive="active">Add</a>
 		<a href="#" class="item" *ngIf="!auth.authenticated" routerLink="/login">Login</a>
 		<div class="right menu" *ngIf="auth.authenticated">
-			<a class="item">
-				<div class="ui icon input">
-					<i class="search icon"></i>
-					<input #searchBox id="search-box" (keyup)="search(searchBox.value)" placeholder="Search">
-				</div>
-			</a>
 			<a class="item">{{auth.user}} </a>
 			<a href="#" class="item pink ui button" *ngIf="auth.authenticated" (click)="auth.logout()">Logout</a>
 		</div>

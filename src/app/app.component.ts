@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
 import { AuthService } from './auth.guard';
+import { AngularFire, FirebaseListObservable, FirebaseObjectObservable } from 'angularfire2';
+
 
 @Component({
   selector: 'app-root',
@@ -8,11 +10,8 @@ import { AuthService } from './auth.guard';
 })
 
 export class AppComponent {
+  companies: string;
 
   constructor(private auth: AuthService) { }
 
-  filterterm(term) {
-    console.log(term);
-
-  }
 }
