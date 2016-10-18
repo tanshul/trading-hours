@@ -37,7 +37,8 @@ export class AuthService {
       if (user) {
         this.user = user.auth.email;
         this.authenticated = true;
-        // this.router.navigate(['/list']);
+        if (window.location.pathname && window.location.pathname === '/login')
+          this.router.navigate(['/list']);
       }
       else {
         // user not logged in
@@ -50,6 +51,7 @@ export class AuthService {
 
   public login(form: any) {
     this.af.auth.login({ email: form.email, password: form.password });
+    this.router.navigate(['/list']);
   }
   public logout() {
     this.af.auth.logout();

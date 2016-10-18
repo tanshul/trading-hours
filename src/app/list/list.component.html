@@ -6,7 +6,7 @@
 		<div class="column right">
 			<div class="ui action left icon input" style="float:right">
 				<i class="search icon"></i>
-				<input #term id="search-box" (keyup)="checksearch(term.value)" placeholder="Search">
+				<input #term id="search-box" (keyup)="checksearch(term.value)" placeholder="Enter company name">
 				<div class="ui black button" (click)="search(term.value)">Search</div>
 			</div>
 		</div>
@@ -32,7 +32,7 @@
 				<td>{{company.city}}</td>
 				<td>{{company.dateadded | date:'MM/dd/yyyy @ h:mma'}}</td>
 				<td>
-					<button routerLink="/edit/{{company.$key}}" class="ui teal button">update</button>
+					<button routerLink="/edit/{{company.$key}}" class="ui teal button">edit</button>
 				</td>
 				<td>
 					<button (click)="delete(company.$key)" class="ui red button">delete</button>

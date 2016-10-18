@@ -9,9 +9,8 @@ import { AuthService } from '../auth.guard';
 })
 
 export class LoginComponent {
-  loader: boolean = false;
 
-  constructor(private auth: AuthService) {}
+  constructor(private auth: AuthService) { }
 
   login(form: any) {
     if (!form.email || !form.password) {
@@ -20,6 +19,7 @@ export class LoginComponent {
     }
 
     this.auth.login(form);
+
     return false;
   }
 }
