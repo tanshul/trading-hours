@@ -18,7 +18,7 @@ export class ListComponent {
 
   constructor(public af: AngularFire) {
     this.companies = af.database.list('/companies',
-      { query: { limitToLast: 10 } }).map((arr) => { return arr.reverse() }) as FirebaseListObservable<any[]>;
+      { query: { limitToLast: 20 } }).map((arr) => { return arr.reverse() }) as FirebaseListObservable<any[]>;
     this.category = af.database.list('/category');
     this.details = af.database.list('/details');
     this.hours = af.database.list('/hours');
@@ -53,7 +53,7 @@ export class ListComponent {
   checksearch(term) {
     if (term === '') {
       //reset to default if no params in search
-      this.companies = this.af.database.list('/companies', { query: { orderByChild: 'dateadded', limitToLast: 10 } });
+      this.companies = this.af.database.list('/companies', { query: { limitToLast: 20 } });
     }
   }
 
