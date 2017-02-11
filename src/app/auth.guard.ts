@@ -1,6 +1,6 @@
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/first';
-import { AngularFire, FirebaseAuth } from 'angularfire2';
+import { AngularFire, AngularFireAuth } from 'angularfire2';
 import { AngularFireModule, AuthMethods, AuthProviders } from 'angularfire2';
 import { FormsModule } from '@angular/forms';
 
@@ -11,7 +11,7 @@ import { Observable } from 'rxjs/Observable';
 @Injectable()
 export class AuthGuard implements CanActivate {
 
-  constructor(private auth: FirebaseAuth, private router: Router) { }
+  constructor(private auth: AngularFireAuth, private router: Router) { }
 
   canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<boolean> {
     return this.auth.map((auth) => {
